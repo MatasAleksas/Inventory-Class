@@ -48,4 +48,31 @@ public class Product {
     public int getQuantity() {
         return this.quantity;
     }
+
+    /**
+     * Updates the quantity of the product.
+     *
+     * @param quantity the new quantity of the product to be set
+     */
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    /**
+     * Sets the price of the product.
+     *
+     * @param price the new price of the product
+     */
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    /**
+     * Updates the unique identifier of the product.
+     *
+     * @param id the new unique identifier for the product
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 }
