@@ -7,7 +7,14 @@ import java.util.ArrayList;
  * @version 1.0.0
  * **/
 public class Inventory {
-    private ArrayList<Product> productList = new ArrayList<>();
+    private ArrayList<Product> productList;
+
+    /**
+     * Constructs an Inventory instance by initializing an empty product list.
+     */
+    public Inventory() {
+        productList = new ArrayList<>();
+    }
 
     /**
      * Adds a new product to the inventory with the specified price, id, and quantity.
@@ -17,8 +24,12 @@ public class Inventory {
      * @param quantity the quantity of the product to be added
      */
     public void AddItem(double price, int id, int quantity) {
-        Product item = new Product(price, id, quantity);
-        productList.add(item);
+        if (!AlreadyExist(id)) {
+            Product item = new Product(price, id, quantity);
+            productList.add(item);
+        } else {
+            System.out.println("Item already exists in the inventory");
+        }
     }
 
     /**
@@ -49,5 +60,14 @@ public class Inventory {
             }
         }
         return -1;
+    }
+
+    public boolean AlreadyExist(int id) {
+        for (Product product : productList) {
+            if (product.getId() == id) {
+                return true;
+            }
+        }
+        return false;
     }
 }
