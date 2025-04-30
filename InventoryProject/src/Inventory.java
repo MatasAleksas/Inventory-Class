@@ -17,6 +17,22 @@ public class Inventory {
     }
 
     /**
+     * Updates the quantity of a product in the inventory based on its unique identifier.
+     * If the product with the specified id exists in the inventory, its quantity
+     * is updated to the provided value.
+     *
+     * @param id the unique identifier of the product whose quantity is to be updated
+     * @param quantity the new quantity to be set for the product
+     */
+    public void SetItemQuantity(int id, int quantity) {
+        for (Product product : productList) {
+            if (product.getId() == id) {
+                product.setQuantity(quantity);
+            }
+        }
+    }
+
+    /**
      * Adds a new product to the inventory with the specified price, id, and quantity.
      *
      * @param price the price of the product to be added
@@ -28,7 +44,9 @@ public class Inventory {
             Product item = new Product(price, id, quantity);
             productList.add(item);
         } else {
-            System.out.println("Item already exists in the inventory");
+            Product item = new Product(price, id, quantity);
+            SetItemQuantity(id, item.getQuantity() + quantity);
+            System.out.println("Item already exists in the inventory, adding quantity to existing item.");
         }
     }
 
@@ -48,6 +66,22 @@ public class Inventory {
     }
 
     /**
+     * Updates the price of the product with the specified unique identifier.
+     * If the product is found in the inventory, its price is updated.
+     * If the product does not exist, the method performs no action.
+     *
+     * @param id the unique identifier of the product whose price is to be updated
+     * @param price the new price to be set for the product
+     */
+    public void SetItemPrice(int id, double price) {
+        for (Product product : productList) {
+            if (product.getId() == id) {
+                product.setPrice(price);
+            }
+        }
+    }
+
+    /**
      * Retrieves the quantity of a product in stock based on its unique identifier.
      *
      * @param id the unique identifier of the product
@@ -62,6 +96,12 @@ public class Inventory {
         return -1;
     }
 
+    /**
+     * Checks if a product with the specified unique identifier already exists in the inventory.
+     *
+     * @param id the unique identifier of the product to check
+     * @return true if a product with the given id exists in the inventory, otherwise false
+     */
     public boolean AlreadyExist(int id) {
         for (Product product : productList) {
             if (product.getId() == id) {
